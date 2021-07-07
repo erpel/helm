@@ -105,6 +105,16 @@ func TestCanonicalAddr(t *testing.T) {
 			Host:   "example.com:31337",
 			Path:   "/not/with/a/bang/but/a/whimper",
 		}: "example.com:31337",
+		{
+			Scheme: "myprotocol",
+			Host:   "example.com",
+			Path:   "/",
+		}: "example.com",
+		{
+			Scheme: "myprotocol",
+			Host:   "example.com:1234",
+			Path:   "/",
+		}: "example.com:1234",
 	}
 	for urlInput, expect := range tests {
 		if got := CanonicalAddr(urlInput); got != expect {
