@@ -87,5 +87,9 @@ func CanonicalAddr(url *url.URL) string {
 	if port == "" {
 		port = portMap[url.Scheme]
 	}
-	return net.JoinHostPort(addr, port)
+	if port != "" {
+		return net.JoinHostPort(addr, port)
+	} else {
+		return addr
+	}
 }
